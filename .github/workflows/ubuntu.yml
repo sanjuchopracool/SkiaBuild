@@ -35,5 +35,5 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: Skia-${{ env.version }}-linux-${{ matrix.build_type }}-${{ matrix.target_machine }}.zip
           asset_name: Skia-${{ env.version }}-linux-${{ matrix.build_type }}-${{ matrix.target_machine }}.zip
-          tag: refs/tags/weekly-${{ env.version }}
+          tag: refs/tags/${{ env.version }}
           overwrite: true
