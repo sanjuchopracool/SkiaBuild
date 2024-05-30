@@ -16,6 +16,7 @@ on:
 env:
   version: m125-665b0e8923
 
+jobs:
   linux:
     runs-on: ubuntu-22.04
     strategy:
