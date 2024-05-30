@@ -28,7 +28,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: Skia-${{ env.version }}-macos-${{ matrix.build_type }}-${{ matrix.target_machine }}.zip
-          asset_name: Skia-${{ env.version }}-macos-${{ matrix.build_type }}-${{ matrix.target_machine }}.zip
+          file: Skia-${{ env.version }}-macos-${{ matrix.build_type }}-${{ matrix.machine }}.zip
+          asset_name: Skia-${{ env.version }}-macos-${{ matrix.build_type }}-${{ matrix.machine }}.zip
           tag: refs/tags/${{ env.version }}
           overwrite: true
