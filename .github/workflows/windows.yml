@@ -31,12 +31,11 @@ jobs:
         run: python3 script/build.py --build-type ${{ matrix.build_type }}
       - shell: bash
         run: python3 script/archive.py --version ${{ env.version }} --build-type ${{ matrix.build_type }}
-      - uses: actions/upload-artifact@v3
+      - name: Upload binaries to tag
+        uses: svenstaro/upload-release-action@v2
         with:
-          name: Skia-${{ env.version }}-windows-${{ matrix.build_type }}-x64.zip
-          path: '*.zip'
-      - shell: bash
-        run: python3 script/release.py --version ${{ env.version }} --build-type ${{ matrix.build_type }}
-        if: ${{ github.event.inputs.skip_release != 'true' }}
-        env:
-          API_TOKEN: ${{ secrets.API_TOKEN }}
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: Skia-${{ env.version }}-windows-${{ matrix.build_type }}-x64.zip
+          asset_name: Skia-${{ env.version }}-windows-${{ matrix.build_type }}-x64.zip
+          tag: refs/tags/${{ env.version }}
+          overwrite: true
