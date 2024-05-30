@@ -43,7 +43,7 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: '*.zip'
+          file: Skia-${{ env.version }}-linux-${{ matrix.build_type }}-${{ matrix.target_machine }}.zip
           asset_name: Skia-${{ env.version }}-linux-${{ matrix.build_type }}-${{ matrix.target_machine }}.zip
           tag: refs/tags/weekly-${{ env.version }}
           overwrite: true
