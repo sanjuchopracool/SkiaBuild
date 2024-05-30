@@ -44,7 +44,7 @@ jobs:
           API_TOKEN: ${{ secrets.API_TOKEN }}
 
   linux:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         target_machine: ["x64", "arm64"]
@@ -76,7 +76,7 @@ jobs:
 
   android:
     if: false
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-22.04
     strategy:
       matrix:
         machine: [arm, arm64, x64, x86]
