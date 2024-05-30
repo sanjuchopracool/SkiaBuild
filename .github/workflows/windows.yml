@@ -1,0 +1,42 @@
+on:
+    workflow_dispatch:
+    schedule:
+        - cron: "0 0 * * 6"
+
+env:
+  version: m125-665b0e8923
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        build_type: [Release, Debug]
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v3
+      - shell: bash
+        run: python3 script/check_release.py --version ${{ env.version }} --build-type ${{ matrix.build_type }}
+        if: ${{ github.event.inputs.skip_release != 'true' }}
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
+      - uses: abdes/gha-setup-ninja@660f330a40aefa8d11632b3f901e92a4adb33d65
+      - uses: microsoft/setup-msbuild@v1
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: amd64
+      - shell: bash
+        run: python3 script/checkout.py --version ${{ env.version }}
+      - shell: bash
+        run: python3 script/build.py --build-type ${{ matrix.build_type }}
+      - shell: bash
+        run: python3 script/archive.py --version ${{ env.version }} --build-type ${{ matrix.build_type }}
+      - uses: actions/upload-artifact@v3
+        with:
+          name: Skia-${{ env.version }}-windows-${{ matrix.build_type }}-x64.zip
+          path: '*.zip'
+      - shell: bash
+        run: python3 script/release.py --version ${{ env.version }} --build-type ${{ matrix.build_type }}
+        if: ${{ github.event.inputs.skip_release != 'true' }}
+        env:
+          API_TOKEN: ${{ secrets.API_TOKEN }}
