@@ -1,17 +1,7 @@
 on:
-  push:
-    branches:
-      - master
-    paths:
-      - ".github/workflows/*"
-      - "script/*"
-      - "patches/*"
-  workflow_dispatch:
-    inputs:
-      skip_release:
-        description: 'Skip release related steps? (true/false)'
-        required: true
-        default: 'false'
+    workflow_dispatch:
+    schedule:
+        - cron: "0 0 * * 6"
 
 env:
   version: m125-665b0e8923
