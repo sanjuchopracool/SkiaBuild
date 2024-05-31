@@ -25,7 +25,7 @@ jobs:
       - uses: microsoft/setup-msbuild@v1
       - uses: ilammy/msvc-dev-cmd@v1
         with:
-          arch: ${{ matrix.machine == 'arm64' && 'amd64_arm64" ||  "amd64")  }}
+          arch: ${{ matrix.machine == arm64 && amd64_arm64 ||  amd64) }}
       - shell: bash
         run: python3 script/checkout.py --version ${{ env.version }} --machine ${{ matrix.machine }}
       - shell: bash
