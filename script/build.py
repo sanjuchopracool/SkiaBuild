@@ -90,7 +90,7 @@ def main():
         'skia_use_system_expat=false',
     ]
 
-    if 'arm64' == machine:
+    if 'x64' == machine:
       args += [r'clang_win="C:\Program Files\LLVM"']
       
     if build_type == 'Debug':
@@ -105,6 +105,7 @@ def main():
 
   out = os.path.join('out', build_type + '-' + machine)
   gn = 'gn.exe' if 'windows' == system else 'gn'
+  print(args)
   subprocess.check_call([os.path.join('bin', gn), 'gen', out, '--args=' + ' '.join(args)])
   ninja = 'ninja.bat' if 'windows' == system else 'ninja'
   subprocess.check_call([os.path.join('..', 'depot_tools', ninja), '-C', out, 'skia', 'modules'])
