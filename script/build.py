@@ -91,9 +91,9 @@ def main():
     ]
 
     if build_type == 'Debug':
-      args += [r' extra_cflags=[\"/MDd\"]']
+      args += [r'extra_cflags=[\"/MDd\"]']
     else:
-      args += [r' extra_cflags=[\"/MD\"]']
+      args += [r'extra_cflags=[\"/MD\"]']
   elif 'android' == system:
     args += [
       'skia_use_system_freetype2=false',
