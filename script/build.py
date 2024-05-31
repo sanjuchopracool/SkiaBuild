@@ -90,6 +90,9 @@ def main():
         'skia_use_system_expat=false',
     ]
 
+    if 'arm64' == machine:
+      args += [r'clang_win="C:\Program Files\LLVM"']
+      
     if build_type == 'Debug':
       args += [r'extra_cflags=["/MDd"]']
     else:
