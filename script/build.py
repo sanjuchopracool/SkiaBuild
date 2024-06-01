@@ -35,7 +35,7 @@ def main():
       'skia_use_system_icu=false',
       # 'skia_enable_skshaper=true',
       # 'skia_enable_svg=true',
-      'skia_enable_skottie=true'
+      'skia_enable_skottie=true',
       'skia_use_system_freetype2=false',
       # 'skia_enable_gpu=true',
       'skia_use_metal=true',
@@ -61,7 +61,7 @@ def main():
       'skia_use_system_icu=false',
       # 'skia_enable_skshaper=true',
       # 'skia_enable_svg=true',
-      'skia_enable_skottie=true'
+      'skia_enable_skottie=true',
       'skia_use_system_freetype2=true',
       # 'skia_enable_gpu=true',
       'extra_cflags_cc=["-frtti"]',
