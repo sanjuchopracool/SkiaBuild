@@ -10,10 +10,11 @@ def main():
   system = common.system()
   ndk = common.ndk()
 
-  if build_type == 'Debug':
-    args = ['is_debug=true']
-  else:
-    args = ['is_official_build=true']
+  # if build_type == 'Debug':
+  #   args = ['is_debug=true']
+  # else:
+  args = ['is_official_build=true',
+          'is_debug=false']
 
   args += [
     'target_cpu="' + machine + '"',
