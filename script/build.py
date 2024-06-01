@@ -89,6 +89,7 @@ def main():
         'skia_use_system_libwebp=false',
         'skia_use_system_icu=false',
         'skia_use_system_expat=false',
+        'skia_use_system_freetype2=false',
     ]
 
     if 'x64' == machine:
