@@ -8,10 +8,10 @@ env:
 
 jobs:
   windows:
-    runs-on: windows-2019
+    runs-on: windows-latest
     strategy:
       matrix:
-        machine: ["x64"]
+        machine: ["x64", "arm64"]
         build_type: [Release, Debug]
       fail-fast: false
     steps:
@@ -21,16 +21,11 @@ jobs:
         if: ${{ github.event.inputs.skip_release != 'true' }}
         env:
           API_TOKEN: ${{ secrets.API_TOKEN }}
-      - name: Install LLVM and Clang
-        uses: KyleMayes/install-llvm-action@v1
-        with:
-            version: "15.0.7"
-      - name: 'Check clang version'
-        shell: cmd
-        run:  clang --version
       - uses: abdes/gha-setup-ninja@660f330a40aefa8d11632b3f901e92a4adb33d65
       - uses: microsoft/setup-msbuild@v1
       - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.machine == 'arm64' && 'amd64_arm64' ||  'amd64' }}
       - shell: bash
         run: python3 -u script/checkout.py --version ${{ env.version }} --machine ${{ matrix.machine }}
       - shell: bash
